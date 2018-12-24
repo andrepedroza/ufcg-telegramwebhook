@@ -12,7 +12,7 @@ app.post('/grafana', (req, res) => {
 
     api.sendPhoto({
         chat_id: process.env.CHATID,
-        caption: `${title}\nEstado: ${state === 'ok' ? '✅  OK!' : '⚠ Alerta!' }\n${message ? 'Mensagem: ' + message : ''}`,
+        caption: `${title}\nEstado: ${state === 'ok' ? '✅  OK!' : '⚠ Alerta!' }${message ? '\nMensagem: ' + message : ''}`,
         photo: imageURL || 'https://pbs.twimg.com/profile_images/695136728441569280/h2OkRTmA_400x400.png'
     })
     .then(() => res.send('Done!'))
