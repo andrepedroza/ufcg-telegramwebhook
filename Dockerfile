@@ -5,4 +5,4 @@ COPY . /app
 WORKDIR /app
 RUN npm i
 RUN chmod +x ./run.sh
-CMD [ "run.sh" ]
+CMD [ "/app/run.sh" ]
