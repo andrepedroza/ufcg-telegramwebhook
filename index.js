@@ -4,8 +4,12 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express().use(bodyParser.json());
 const telegram = require('telegram-bot-api');
+const fs = require('fs');
+const token = fs.existsSync('/run/secrets/token')
+    ? fs.readFileSync('/run/secrets/token', 'utf8')
+    : process.env.TOKEN
 
-const api = new telegram({ token: process.env.TOKEN });
+const api = new telegram({ token });
 
 app.post('/grafana', (req, res) => {
     const { title, state, imageURL, message } = req.body
