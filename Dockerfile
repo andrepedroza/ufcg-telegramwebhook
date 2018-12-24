@@ -5,4 +5,5 @@ COPY . /app
 WORKDIR /app
 RUN npm i
 RUN chmod +x ./run.sh
-CMD [ "/app/run.sh" ]
+EXPOSE 3000
+CMD [ "./run.sh" ]
