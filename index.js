@@ -7,13 +7,13 @@ const telegram = require('telegram-bot-api');
 const fs = require('fs');
 const token = fs.existsSync('/run/secrets/token')
     ? fs.readFileSync('/run/secrets/token', 'utf8')
-    : process.env.TOKEN
+    : process.env.TOKEN;
 
 const api = new telegram({ token });
 
 app.post('/grafana', (req, res) => {
-    const { title, state, imageURL, message } = req.body
-
+    const { title, state, imageURL, message } = req.body;
+    console.log(req.body);
     api.sendPhoto({
         chat_id: process.env.CHATID,
         caption: `${title}\nEstado: ${state === 'ok' ? '✅  OK!' : '⚠ Alerta!' }${message ? '\nMensagem: ' + message : ''}`,
