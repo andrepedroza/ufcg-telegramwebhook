@@ -4,4 +4,5 @@ ENV CHATID=-1
 COPY . /app
 WORKDIR /app
 RUN npm i
-CMD [ "npm", "start" ]
+RUN chmod +x ./run.sh
+CMD [ "run.sh" ]
