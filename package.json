@@ -12,7 +12,8 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
+    "lodash": ">=4.17.5",
     "telegram-bot-api": "^1.2.2",
-    "lodash": ">=4.17.5"
+    "webdav-server": "^2.4.1"
   }
 }
