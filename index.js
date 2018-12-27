@@ -40,9 +40,6 @@ const webDAVServer = new webdav.WebDAVServer({
 // Set Root Folder
 webDAVServer.setFileSystemSync('/', new webdav.PhysicalFileSystem(path.join(__dirname, 'webdav')))
 
-// Bind Webdav with Express
-app.use(webdav.extensions.express('/webdav', webDAVServer));
-
 // Create Grafana Endpoint
 app.post('/grafana', (req, res) => {
     console.log(req.body, fs.readdirSync(path.join(__dirname, 'webdav')))
@@ -62,6 +59,9 @@ app.post('/grafana', (req, res) => {
     // If Image Exists Remove It
     .finally(() => imgPath && fs.existsSync(imgPath) && fs.unlinkSync(imgPath) && console.log('File Removed'));
 });
+
+// Bind Webdav with Express
+app.use(webdav.extensions.express('/', webDAVServer));
 
 // Start Express Server
 app.listen(3000, () => console.log('[Server]: Webhook is listening'));
