@@ -16,6 +16,7 @@ const api = new telegram({ token });
 
 // Create Grafana Endpoint
 app.post('/grafana', (req, res) => {
+    console.log(req.body)
     // Get Information from Request Body
     const { ruleName, state, imageURL, message } = req.body;
     // Send Message with Image to Telegram
