@@ -44,6 +44,7 @@ app.use(webdav.extensions.express('/webdav', webDAVServer));
 
 // Create Grafana Endpoint
 app.post('/grafana', (req, res) => {
+    console.log(req.body, fs.readdirSync(path.join(__dirname, 'webdav')))
     // Get Information from Request Body
     const { ruleName, state, imageURL, message } = req.body;
     const imgPath = imageURL && path.join(__dirname, 'webdav', imageURL)
@@ -58,7 +59,7 @@ app.post('/grafana', (req, res) => {
     // If Some Error Occurred Send Message
     .catch(() => res.send('Error!'))
     // If Image Exists Remove It
-    .finally(() => imgPath && fs.existsSync(imgPath) && fs.unlinkSync(imgPath));
+    .finally(() => imgPath && fs.existsSync(imgPath) && fs.unlinkSync(imgPath) && console.log('File Removed'));
 });
 
 // Start Express Server
