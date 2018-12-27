@@ -4,6 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express().use(bodyParser.json());
 const telegram = require('telegram-bot-api');
+const fs = require('fs');
 
 // Telegram Bot Token
 const token = fs.existsSync('/run/secrets/telegram-token')
