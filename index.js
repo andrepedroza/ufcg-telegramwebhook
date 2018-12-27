@@ -16,14 +16,13 @@ const api = new telegram({ token });
 
 // Create Grafana Endpoint
 app.post('/grafana', (req, res) => {
-    console.log(req.body)
     // Get Information from Request Body
-    const { ruleName, state, imageURL, message } = req.body;
+    const { ruleName, state, imageUrl, message } = req.body;
     // Send Message with Image to Telegram
     api.sendPhoto({
         chat_id: process.env.CHAT_ID || -1,
         caption: `${ruleName}\nEstado: ${state === 'ok' ? '✅  OK!' : '⚠ Alerta!' }${message ? '\nMensagem: ' + message : ''}`,
-        photo: imageURL || 'https://pbs.twimg.com/profile_images/695136728441569280/h2OkRTmA_400x400.png'
+        photo: imageUrl || 'https://pbs.twimg.com/profile_images/695136728441569280/h2OkRTmA_400x400.png'
     })
     // If Everything is OK Send Message
     .then(() => res.send('Done!'))
