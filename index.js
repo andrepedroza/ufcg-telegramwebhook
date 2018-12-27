@@ -24,6 +24,7 @@ const webdavPassword = fs.existsSync('/run/secrets/webdav-password')
 // User Manager (tells who are the users)
 const userManager = new webdav.SimpleUserManager();
 const user = userManager.addUser(process.env.WEBDAV_USERNAME || 'username', webdavPassword, false);
+console.log(JSON.stringify(user))
 
 // Privilege Manager (tells which users can access which files/folders)
 const privilegeManager = new webdav.SimplePathPrivilegeManager();
@@ -33,7 +34,7 @@ privilegeManager.setRights(user, '/', [ 'all' ]);
 const webDAVServer = new webdav.WebDAVServer({
     // HTTP Digest authentication with the realm 'Default realm'
     httpAuthentication: new webdav.HTTPDigestAuthentication(userManager, 'Default realm'),
-    privilegeManager: privilegeManager
+    privilegeManager
 });
 
 // Set Root Folder
