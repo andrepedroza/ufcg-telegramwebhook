@@ -47,7 +47,7 @@ app.post('/grafana', (req, res) => {
     console.log(req.body, fs.readdirSync(path.join(__dirname, 'webdav')))
     // Get Information from Request Body
     const { ruleName, state, imageURL, message } = req.body;
-    const imgPath = imageURL && path.join(__dirname, 'webdav', imageURL)
+    const imgPath = imageURL && path.join(__dirname, 'webdav', imageURL.split('/webdav/')[1])
     // Send Message with Image to Telegram
     api.sendPhoto({
         chat_id: process.env.CHAT_ID || -1,
