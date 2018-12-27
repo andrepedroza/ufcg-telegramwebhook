@@ -9,8 +9,8 @@ const fs = require('fs');
 const path = require('path');
 
 // Telegram Bot Token
-const token = fs.existsSync('/run/secrets/token')
-    ? fs.readFileSync('/run/secrets/token', 'utf8')
+const token = fs.existsSync('/run/secrets/telegram-token')
+    ? fs.readFileSync('/run/secrets/telegram-token', 'utf8')
     : process.env.TELEGRAM_TOKEN || '';
 
 // Telegram API
